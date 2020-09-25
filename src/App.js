@@ -35,15 +35,19 @@ const App = () => {
     const {name, value} = event.target;
 
     setFullName((prevVal) => {
-      if(name === 'fname'){
-        return { fname: value, lname: prevVal.lname, email: prevVal.email, phone_num: prevVal.phone_num }
-      }else if(name === 'lname'){
-        return { fname: prevVal.fname, lname: value, email: prevVal.email, phone_num: prevVal.phone_num }
-      }else if(name === 'email'){
-        return { fname: prevVal.fname, lname: prevVal.lname, email: value, phone_num: prevVal.phone_num }
-      }else if(name === 'phone_num'){
-        return { fname: prevVal.fname, lname: prevVal.lname, email: prevVal.email, phone_num: value }
+      return {
+        ...prevVal,
+        [name]: value
       }
+      // if(name === 'fname'){
+      //   return { fname: value, lname: prevVal.lname, email: prevVal.email, phone_num: prevVal.phone_num }
+      // }else if(name === 'lname'){
+      //   return { fname: prevVal.fname, lname: value, email: prevVal.email, phone_num: prevVal.phone_num }
+      // }else if(name === 'email'){
+      //   return { fname: prevVal.fname, lname: prevVal.lname, email: value, phone_num: prevVal.phone_num }
+      // }else if(name === 'phone_num'){
+      //   return { fname: prevVal.fname, lname: prevVal.lname, email: prevVal.email, phone_num: value }
+      // }
     })
   }
 
