@@ -19,20 +19,30 @@ const App = () => {
   //   setFullName(firstname + " " + lastname);
   // }
 
+  ////////////////////////////////////////////////////////////////
+
   const [fullname, setFullName] = useState({
     fname: "",
-    lname: ""
+    lname: "",
+    email: "",
+    phone_num: ""
   });
 
   const inputEvent = (event) => {
    // setName(event.target.value);
-    const name = event.target.name;
-    const value = event.target.value;
+    //const name = event.target.name;
+    //const value = event.target.value;
+    const {name, value} = event.target;
+
     setFullName((prevVal) => {
-      if(name === 'Fname'){
-        return {fname: value, lname: prevVal.lname }
-      }else if(name === 'Lname'){
-        return { fname: prevVal.fname, lname: value }
+      if(name === 'fname'){
+        return { fname: value, lname: prevVal.lname, email: prevVal.email, phone_num: prevVal.phone_num }
+      }else if(name === 'lname'){
+        return { fname: prevVal.fname, lname: value, email: prevVal.email, phone_num: prevVal.phone_num }
+      }else if(name === 'email'){
+        return { fname: prevVal.fname, lname: prevVal.lname, email: value, phone_num: prevVal.phone_num }
+      }else if(name === 'phone_num'){
+        return { fname: prevVal.fname, lname: prevVal.lname, email: prevVal.email, phone_num: value }
       }
     })
   }
@@ -48,17 +58,31 @@ const App = () => {
       <form onSubmit={onSubmit}>
         <div>
           <h1>Hello {fullname.fname} {fullname.lname} </h1>
+          <p>{fullname.email}</p>
+          <p>{fullname.phone_num}</p>
           <input type="text"
           placeholder="Enter your First Name"
           onChange={inputEvent}
-          name="Fname"
+          name="fname"
           value={fullname.fname}
           />
           <input type="text"
           placeholder="Enter your Last Name"
           onChange={inputEvent}
-          name="Lname"
+          name="lname"
           value={fullname.lname}
+          />
+          <input type="email"
+          placeholder="Enter your Email"
+          onChange={inputEvent}
+          name="email"
+          value={fullname.email}
+          />
+          <input type="text"
+          placeholder="Enter your Mobile Number"
+          onChange={inputEvent}
+          name="phone_num"
+          value={fullname.phone_num}
           />
           <button type="submit">Submit</button>
         </div>
@@ -66,5 +90,6 @@ const App = () => {
     </>
   )
 }
+
 
 export default App;
